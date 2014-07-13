@@ -1,0 +1,66 @@
+buildscript {
+    dependencies {
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.1.0'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'hugo'
+
+def versionMajor = Integer.parseInt(APP_VERSION_MAJOR)
+def versionMinor = Integer.parseInt(APP_VERSION_MINOR)
+def versionPatch = Integer.parseInt(APP_VERSION_PATCH)
+def versionBuild = Integer.parseInt(APP_VERSION_BUILD)
+
+android {
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        applicationId project.PACKAGE_NAME
+        minSdkVersion Integer.parseInt(ANDROID_BUILD_MIN_SDK_VERSION_WEAR)
+        targetSdkVersion Integer.parseInt(ANDROID_BUILD_TARGET_SDK_VERSION)
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}.${versionBuild}"
+        manifestPlaceholders = [ watchfaceName:project.WATCHFACE_NAME, appName:project.APP_NAME ]
+
+        applicationVariants.all { variant ->
+            def watchfaceName = project.WATCHFACE_NAME.replace(" ", "").toLowerCase()
+            def file = variant.outputFile
+            def suffix = defaultConfig.versionName
+            def outputFile = file.name.replace(".apk", "-" + suffix + ".apk")
+            outputFile = outputFile.replace("wear", watchfaceName)
+            variant.outputFile = new File(file.parent, outputFile)
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("release-keystore.jks")
+            keyAlias 'PROMPT_DEV'
+            storePassword 'PROMPT_DEV'
+            keyPassword 'PROMPT_DEV'
+        }
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    compile 'com.google.android.support:wearable:+'
+    compile 'com.google.android.gms:play-services-wearable:+'
+    compile 'com.jakewharton:butterknife:5.1.+'
+    compile 'com.jakewharton.timber:timber:2.4.+'
+}
+
+apply from: 'https://raw.github.com/twotoasters/HelloAndroidStudio/master/gradle/keystore.gradle'
