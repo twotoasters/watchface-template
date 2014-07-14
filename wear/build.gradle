@@ -39,9 +39,19 @@ android {
         targetCompatibility JavaVersion.VERSION_1_6
     }
 
+    signingConfigs {
+        release {
+            storeFile file("../release-keystore.jks")
+            keyAlias 'PROMPT_DEV'
+            storePassword 'PROMPT_DEV'
+            keyPassword 'PROMPT_DEV'
+        }
+    }
+
     buildTypes {
         release {
             runProguard false
+            signingConfig signingConfigs.release
         }
     }
 }
@@ -53,3 +63,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:5.1.+'
     compile 'com.jakewharton.timber:timber:2.4.+'
 }
+
+apply from: 'https://raw.github.com/twotoasters/HelloAndroidStudio/master/gradle/keystore.gradle'

@@ -102,6 +102,11 @@ public class Watchface extends FrameLayout implements IWatchface {
         setImageResources();
     }
 
+    @Override
+    public boolean handleSecondsInDimMode() {
+        return false;
+    }
+
     @DebugLog
     private void setImageResources() {
         if (mInflated) {
