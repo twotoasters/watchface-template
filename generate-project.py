@@ -13,6 +13,12 @@ def replaceAll(filename, searchExp, replaceExp):
             line = line.replace(searchExp, replaceExp)
         sys.stdout.write(line)
 
+def rmTree(dirpath):
+	try:
+		shutil.rmtree(dirpath)
+	except:
+		pass
+
 def replaceProjectProps(watchfaceName, appName, packageName):
 	print 'Configuring project build files...'
 	filename = projRootDir + '/gradle.properties'
@@ -45,9 +51,9 @@ def replaceSourcePackages(packageName):
 	# Configure project directory structure
 	srcDir = projRootDir + '/wear/src/main/java/' + TEMPLATE_PKG_PATH
 	destDir = srcDir.replace(TEMPLATE_PKG_PATH, packageName.replace('.', '/'))
-	shutil.rmtree(destDir)
+	rmTree(destDir)
 	shutil.move(srcDir, destDir)
-	shutil.rmtree(srcDir)
+	rmTree(srcDir)
 
 def generateProject(watchfaceName, appName, packageName):
 	print '\nGenerating project with attributes...\n\troot =\t', projRootDir, '\n\tface =\t', watchfaceName, '\n\tapp = \t', appName, '\n\tpkg =\t', packageName
