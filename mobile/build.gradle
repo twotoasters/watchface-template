@@ -16,6 +16,16 @@ android {
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}.${versionBuild}"
         manifestPlaceholders = [ watchfaceName:project.WATCHFACE_NAME, appName:project.APP_NAME ]
+
+        applicationVariants.all { variant ->
+            def watchfaceName = project.WATCHFACE_NAME.replace(" ", "").toLowerCase()
+            def file = variant.outputFile
+            def suffix = defaultConfig.versionName
+            def outputFile = file.name.replace(".apk", "-" + suffix + ".apk")
+            outputFile = outputFile.replace("mobile", watchfaceName)
+            variant.outputFile = new File(file.parent, outputFile)
+        }
+
     }
 
     compileOptions {

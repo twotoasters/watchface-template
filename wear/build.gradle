@@ -39,19 +39,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_6
     }
 
-    signingConfigs {
-        release {
-            storeFile file("release-keystore.jks")
-            keyAlias 'PROMPT_DEV'
-            storePassword 'PROMPT_DEV'
-            keyPassword 'PROMPT_DEV'
-        }
-    }
-
     buildTypes {
         release {
             runProguard false
-            signingConfig signingConfigs.release
         }
     }
 }
