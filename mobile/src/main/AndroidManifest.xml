@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.twotoasters.watchfacetemplate">
 
-    <application android:allowBackup="true" android:label="${appName}"/>
+    <application android:allowBackup="true"
+        android:icon="@drawable/preview"
+        android:label="${appName}"/>
 
 </manifest>
