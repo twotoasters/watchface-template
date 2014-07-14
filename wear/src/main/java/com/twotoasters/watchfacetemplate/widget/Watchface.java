@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.twotoasters.watchface.gears.widget.IWatchface;
+import com.twotoasters.watchface.gears.widget.Watch;
 import com.twotoasters.watchfacetemplate.R;
 
 import java.util.Calendar;

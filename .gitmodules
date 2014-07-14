@@ -1,0 +1,3 @@
+[submodule "submodules/watchface-gears"]
+	path = submodules/watchface-gears
+	url = git@github.com:twotoasters/watchface-gears.git

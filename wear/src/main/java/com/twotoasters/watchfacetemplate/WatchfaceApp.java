@@ -1,22 +1,14 @@
 package com.twotoasters.watchfacetemplate;
 
-import android.app.Application;
+import com.twotoasters.watchface.gears.GearsWatchfaceApp;
 
 import timber.log.Timber;
 import timber.log.Timber.DebugTree;
 
-public class WatchfaceApp extends Application {
-
-    private static WatchfaceApp app;
-
-    public static WatchfaceApp getInstance() {
-        return app;
-    }
-
+public class WatchfaceApp extends GearsWatchfaceApp {
     @Override
     public void onCreate() {
         super.onCreate();
-        app = this;
         Timber.plant(new DebugTree());
     }
 }
