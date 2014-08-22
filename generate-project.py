@@ -20,7 +20,7 @@ def rmTree(dirpath):
 		pass
 
 def replaceProjectProps(watchfaceName, appName, packageName):
-	print 'Configuring project build files...'
+	print('Configuring project build files...')
 	filename = projRootDir + '/gradle.properties'
 	replaceAll(filename, TEMPLATE_WATCH_NAME, watchfaceName)
 	replaceAll(filename, TEMPLATE_APP_NAME, appName)
@@ -28,17 +28,17 @@ def replaceProjectProps(watchfaceName, appName, packageName):
 
 def replaceManifests(packageName):
 	for projectType in ['mobile', 'wear']:
-		print 'Configuring', projectType, 'manifest...'
+		print('Configuring', projectType, 'manifest...')
 		filename = projRootDir + '/' + projectType + '/src/main/AndroidManifest.xml'
 		replaceAll(filename, TEMPLATE_PKG_NAME, packageName)
 
 def replaceLayoutFiles(packageName):
-	print 'Configuring wear layouts...'
+	print('Configuring wear layouts...')
 	filename = projRootDir + '/wear/src/main/res/layout/watchface.xml'
 	replaceAll(filename, TEMPLATE_PKG_NAME, packageName)
 
 def replaceSourcePackages(packageName):
-	print 'Configuring wear sources...'
+	print('Configuring wear sources...')
 	TEMPLATE_PKG_PATH = TEMPLATE_PKG_NAME.replace('.', '/')
 	
 	# Configure package declarations and imports
@@ -56,13 +56,13 @@ def replaceSourcePackages(packageName):
 	rmTree(srcDir)
 
 def generateProject(watchfaceName, appName, packageName):
-	print '\nGenerating project with attributes...\n\troot =\t', projRootDir, '\n\tface =\t', watchfaceName, '\n\tapp = \t', appName, '\n\tpkg =\t', packageName
-	raw_input("\nPress Enter to continue...\n")
+	print('\nGenerating project with attributes...\n\troot =\t', projRootDir, '\n\tface =\t', watchfaceName, '\n\tapp = \t', appName, '\n\tpkg =\t', packageName)
+	input("\nPress Enter to continue...\n")
 	replaceProjectProps(watchfaceName, appName, packageName)
 	replaceManifests(packageName)
 	replaceLayoutFiles(packageName)
 	replaceSourcePackages(packageName)
-	print '\nProject generated!'
+	print('\nProject generated!')
 
 # check inputs
 if len(sys.argv) != 7:
