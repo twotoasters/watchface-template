@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from __future__ import print_function  # Gives ython 2.6+ support.
+from __future__ import print_function  # Gives Python 2.6+ support.
 import sys, os, re, fileinput, shutil
 
 proj_root_dir = os.path.dirname(os.path.abspath(__file__))
