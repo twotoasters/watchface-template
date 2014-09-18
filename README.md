@@ -1,6 +1,8 @@
 watchface-template
 ==================
 
+Requires Python 2.7.x.
+
 Usage:
 
 - Clone the repo and give it a new name (denoted here by *&lt;new-watchface-name&gt;*)
