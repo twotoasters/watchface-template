@@ -56,8 +56,8 @@ def replaceSourcePackages(packageName):
 	rmTree(srcDir)
 
 def generateProject(watchfaceName, appName, packageName):
-	print('\nGenerating project with attributes...\n\troot =\t', projRootDir, '\n\tface =\t', watchfaceName, '\n\tapp = \t', appName, '\n\tpkg =\t', packageName)
-	input("\nPress Enter to continue...\n")
+	print '\nGenerating project with attributes...\n\troot =\t', projRootDir, '\n\tface =\t', watchfaceName, '\n\tapp = \t', appName, '\n\tpkg =\t', packageName
+	raw_input ('\nPress Enter to continue...\n')
 	replaceProjectProps(watchfaceName, appName, packageName)
 	replaceManifests(packageName)
 	replaceLayoutFiles(packageName)
