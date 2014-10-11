@@ -8,7 +8,7 @@ Usage:
 - Clone the repo and give it a new name (denoted here by *&lt;new-watchface-name&gt;*)
 
 	```
-	git clone git@github.com:twotoasters/watchface-template.git <new-watchface-name>
+	git clone https://github.com/twotoasters/watchface-template.git <new-watchface-name>
 	```
 
 - Navigate into the newly created folder with your repo and run the project generation script with the desired input parameter values
