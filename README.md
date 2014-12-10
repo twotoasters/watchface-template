@@ -1,3 +1,7 @@
+# DEPRECATED
+
+Don't use this library anymore, it is obsolete! Check out the [Android Wear Watch Face Sample](http://developer.android.com/samples/WatchFace/index.html) from the Android Dev Team!
+
 watchface-template
 ==================
 
